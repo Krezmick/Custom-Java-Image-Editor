@@ -164,7 +164,7 @@ public class CustomImageEditor extends JFrame {
             }
         });
 
-		//*****Transform*****
+		//----------------------Transform----------------------
 		JMenuItem rotate90Item = new JMenuItem("Rotate 90°");
 		rotate90Item.addActionListener(new ActionListener() {
             @Override
@@ -213,7 +213,7 @@ public class CustomImageEditor extends JFrame {
             }
         });
 		
-		//*****Effects*****
+		//----------------------Effects----------------------
         JMenuItem grayscaleItem = new JMenuItem("Grayscale");
         grayscaleItem.addActionListener(new ActionListener() {
             @Override
@@ -258,7 +258,7 @@ public class CustomImageEditor extends JFrame {
         pixelizeItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               applyPixelize(); // Block size = 10 pixels
+               applyPixelize(); //block size = 10 pixels
             }
         });
 
@@ -282,7 +282,7 @@ public class CustomImageEditor extends JFrame {
         upscaleItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               upscaleImage(2);
+               upscaleImage(2); //upscale x2
             }
         });
 		
@@ -446,12 +446,12 @@ public class CustomImageEditor extends JFrame {
             }
         });
 
-		JMenuItem colorMaskEffectItem = new JMenuItem("Color Mask");
+		JMenuItem colorMaskEffectItem = new JMenuItem("Color Mask"); //add a slider for this
 		colorMaskEffectItem.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
               applyColorMaskEffect(Color.BLUE);
-              applyColorMaskEffect(Color.RED); // Example: Isolate red tones
+              applyColorMaskEffect(Color.RED); //isolate red tones
             }
         });
 
@@ -459,7 +459,7 @@ public class CustomImageEditor extends JFrame {
 		sphereFoldEffectItem.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-				applySphereFoldEffect(120, 180); //example
+				applySphereFoldEffect(120, 180); //inner radius, outer
             }
         });
 
@@ -483,7 +483,7 @@ public class CustomImageEditor extends JFrame {
 		parallaxImageEffectItem.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-				apply3DParallaxEffect(25);
+				apply3DParallaxEffect(25); //base strength
             }
         });
 
@@ -499,7 +499,7 @@ public class CustomImageEditor extends JFrame {
         fileMenu.add(loadImageItem);
         fileMenu.add(saveImageItem);
 		fileMenu.add(reloadImageItem);
-		fileMenu.add(toggleSettingsItem); // Added Toggle Option
+		fileMenu.add(toggleSettingsItem);
 		fileMenu.add(toggleSettingsItem2);
 		//Edit Menu
 		editMenu.add(sharpenItem);
@@ -798,7 +798,7 @@ public class CustomImageEditor extends JFrame {
 		Random rand = new Random();
 
 		int blockSize = amount; //5 defines the pixel square size for swapping
-		int[][] tempPixels = new int[width][height]; // Temporary array for accurate swaps
+		int[][] tempPixels = new int[width][height]; //temporary array for accurate swaps
 
 		for (int x = 0; x < width; x++) { //copy original image pixels into temporary storage
 			for (int y = 0; y < height; y++) {
@@ -1105,7 +1105,7 @@ public class CustomImageEditor extends JFrame {
 				int g = (rgb >> 8) & 0xFF;
 				int b = rgb & 0xFF;
 
-				r = Math.min(255, r + 40); //shift colors toward a neon-dominated palette
+				r = Math.min(255, r + 40); //shift colors to neon purple glow
 				g = Math.max(0, g - 50);
 				b = Math.min(255, b + 100);
 
@@ -1261,12 +1261,12 @@ public class CustomImageEditor extends JFrame {
 						int neighborRGB = image.getRGB(newX, newY);
 						
 						int neighborBrightness = ((neighborRGB >> 16) & 0xFF + (neighborRGB >> 8) & 0xFF + (neighborRGB & 0xFF)) / 3;
-						shadowStrength += Math.max(0, 255 - neighborBrightness); // Darker areas receive stronger shading
+						shadowStrength += Math.max(0, 255 - neighborBrightness); //darker areas receive stronger shading
 					}
 				}
 
 				shadowStrength /= 9; //normalize the shading intensity
-				shadowStrength = Math.min(intensity, shadowStrength / 4); // Control max depth
+				shadowStrength = Math.min(intensity, shadowStrength / 4); //max depth
 
 				r = Math.max(0, r - shadowStrength);
 				g = Math.max(0, g - shadowStrength);
@@ -1498,7 +1498,7 @@ public class CustomImageEditor extends JFrame {
 		imageLabel.setIcon(new ImageIcon(image));
 	}
 
-	private void applyRenaissancePaintingEffect() {
+	private void applyRenaissancePaintingEffect() { //this one is a joke
 	   if (image == null) return;
 
 		int width = image.getWidth();
@@ -1511,14 +1511,14 @@ public class CustomImageEditor extends JFrame {
 		List<Point> featurePoints = new ArrayList<>();
 		Random rand = new Random();
 
-		//Extract key feature points safely
+		//extract key feature points safely
 		for (int x = 0; x < width; x += rand.nextInt(30) + 20) {
 			for (int y = 0; y < height; y += rand.nextInt(30) + 20) {
 				featurePoints.add(new Point(x, y));
 			}
 		}
 
-		//Generate cubist-style fragmented polygons without exceeding bounds
+		//generate cubist-style fragmented polygons without exceeding bounds
 		for (int i = 0; i < featurePoints.size() - 2; i++) {
 			Point p1 = featurePoints.get(i);
 			Point p2 = featurePoints.get(i + 1);
@@ -1575,7 +1575,7 @@ public class CustomImageEditor extends JFrame {
 		Set<String> connectedPairs = new HashSet<>();
 		Random rand = new Random();
 
-		//optimized Edge Detection (Using Sobel Operator)
+		//optimized edge detection (using Sobel Operator)
 		for (int x = 1; x < width - 1; x += 8) {
 			for (int y = 1; y < height - 1; y += 8) {
 				int rgb = image.getRGB(x, y);
@@ -1789,7 +1789,7 @@ public class CustomImageEditor extends JFrame {
 				int b = rgb & 0xFF;
 
 				//apply 8-bit color quantization
-				r = (r / 32) * 32; // Restrict to 8-bit step
+				r = (r / 32) * 32; //restrict to 8-bit step
 				g = (g / 32) * 32;
 				b = (b / 32) * 32;
 
@@ -1811,17 +1811,16 @@ public class CustomImageEditor extends JFrame {
 
 		int width = image.getWidth();
 		int height = image.getHeight();
-		BufferedImage colorReducedImage = new BufferedImage(width, height, BufferedImage.TYPE_USHORT_565_RGB);
+		BufferedImage colorReducedImage = new BufferedImage(width, height, BufferedImage.TYPE_USHORT_565_RGB); //no alpha
 
-		for (int x = 0; x < width; x++) {
+		for (int x = 0; x < width; x++) {  //same as D2
 			for (int y = 0; y < height; y++) {
 				int rgb = image.getRGB(x, y);
 				int r = (rgb >> 16) & 0xFF;
 				int g = (rgb >> 8) & 0xFF;
 				int b = rgb & 0xFF;
 
-				//apply 8-bit color quantization
-				r = (r / 32) * 32; // Restrict to 8-bit step
+				r = (r / 32) * 32;
 				g = (g / 32) * 32;
 				b = (b / 32) * 32;
 
@@ -1850,7 +1849,7 @@ public class CustomImageEditor extends JFrame {
 				int b = rgb & 0xFF;
 
 				//compute depth displacement using simple luminance as height map
-				float depth = (r + g + b) / 765.0f; // Normalize based on brightness
+				float depth = (r + g + b) / 765.0f; //normalize based on brightness
 				float offsetX = depthFactor * depth * ((x - centerX) / (float) width);
 				float offsetY = depthFactor * depth * ((y - centerY) / (float) height);
 
@@ -1869,3 +1868,4 @@ public class CustomImageEditor extends JFrame {
         new CustomImageEditor().setVisible(true);
     }
 }
+
