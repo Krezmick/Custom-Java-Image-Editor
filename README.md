@@ -30,7 +30,7 @@ Spray Paint Effect
 Depth Effect  
 Ambient Occulsion Effect  
 Line Art Effect  
-Text Pixel Replacer (Replaces pixels with text to create a text image)  
+Text Pixel Replacer (Replaces pixels with text and exports to a .txt file)  
 Import Text as Image (Imports the exported text file to be exported as a image file)  
 Thermo Infrared Effect  
 Pixel Explosion Effect  
