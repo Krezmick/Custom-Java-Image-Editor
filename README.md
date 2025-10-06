@@ -22,7 +22,7 @@ Glow
 HDR Effect  
 Pixelize  
 Scramble (Takes chunks of pixels and moves each one in a random direction)  
-Auto Crop Image (works best on dark flat colored backgrounds)  
+Auto Crop Image (works best on flat colored backgrounds)  
 Glitch Effect  
 Spray Paint Effect  
 Depth Effect  
